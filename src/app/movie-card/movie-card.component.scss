@@ -1,0 +1,12 @@
+.movies-box{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.box-item{
+    display:flex;
+    flex-direction: column;
+    width:20%;
+    margin:15px 15px;
+}

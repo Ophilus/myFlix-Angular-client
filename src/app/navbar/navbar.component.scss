@@ -1,0 +1,11 @@
+.nav-bar{
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(226, 223, 223, 0.527);
+}
+.info-box{
+    flex: auto;
+}
+.logout-button{
+    width: 10rem;
+}

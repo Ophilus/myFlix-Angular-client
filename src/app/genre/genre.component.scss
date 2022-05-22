@@ -1,0 +1,9 @@
+.genre-dialog{
+    box-shadow: none;
+}
+
+::ng-deep.mat-dialog-container{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}

@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//html, body {  }
+body { width:100%;margin: 0; display: flex;justify-content: center;font-family: Roboto, "Helvetica Neue", sans-serif; }
+.app{
+    display: flex;
+    width:75%;
+    justify-content: center;
+    align-content: center;
+    background-color: rgba(226, 223, 223, 0.151);
+}
