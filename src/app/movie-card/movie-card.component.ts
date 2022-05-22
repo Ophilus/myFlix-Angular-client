@@ -22,10 +22,14 @@ export class MovieCardComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFavouriteMovies();
-    console.log(this.favouriteMovies);
     this.getMovies();
     
   }
+  /**
+   * Gets movies from api call and sets the movies state to return JSON file
+   * @returns array holding movies objects
+   * @function getAllMovies
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -33,6 +37,13 @@ export class MovieCardComponent implements OnInit {
         return this.movies;
       });
     }
+
+    /**
+  * opens the user director dialog from DirectorComponent to displaying details
+  * @param name
+  * @param bio
+  * @param birthday
+  */
     openDirectorDialog(name: string, bio: string, birthday: Date): void {
       this.MatDialog.open(DirectorComponent, {
         data: {
@@ -44,7 +55,11 @@ export class MovieCardComponent implements OnInit {
         width: '500px'
       });
     }
-
+/**
+  * opens the user genre dialog from GenreComponent to displaying details
+  * @param name
+  * @param description
+  */
     openGenreDialog(name: string, description: string): void {
       this.MatDialog.open(GenreComponent, {
         data: {
@@ -55,7 +70,11 @@ export class MovieCardComponent implements OnInit {
         width: '500px'
       });
     }
-
+ /**
+   * opens the movie details dialog
+   * @param title
+   * @param description
+   */
     openMovieDetailsDialog(title: string, description: string): void {
       this.MatDialog.open(MovieDetailsComponent, {
         data: {
@@ -66,22 +85,32 @@ export class MovieCardComponent implements OnInit {
         width: '500px'
       });
     }
+     /**
+   * Gets favorite movies and sets the favorite movies variable
+   * @returns array holding ids of user's favorite movies
+   * @function getFavoriteMovies
+   */
     getFavouriteMovies(): void {
       this.fetchApiData.getFavouriteMovies().subscribe((resp: any) => {
         this.favouriteMovies = resp;
-        console.log(this.favouriteMovies);
         return this.favouriteMovies;
       });
     }
-
+/**
+   * add a movie to the list of favourite movies
+   * @param id 
+   * @function addFavouriteMovies
+   */
     addToFavoriteMovies(id: string): void {
-      console.log(id);
       this.fetchApiData.addFavouriteMovies(id).subscribe((result) => {
-        console.log(result);
         this.ngOnInit();
       })
     }
-
+/**
+   * remove a movie from the list of favourite movies
+   * @param id 
+   * @function deleteFavouriteMovies
+   */
     removeFromFavoriteMovies(id: string): void {
       console.log(id);
       this.fetchApiData.deleteFavouriteMovies(id).subscribe((result) => {
@@ -89,6 +118,11 @@ export class MovieCardComponent implements OnInit {
         this.ngOnInit();
       })
     }
+    /**
+   * checks if a movie is included in the user's list of favorite movies
+   * @param id 
+   * @returns true, if the movie is a favorite move, else false
+   */
     isFavourite(id: string): boolean {
       return this.favouriteMovies.includes(id)
     }

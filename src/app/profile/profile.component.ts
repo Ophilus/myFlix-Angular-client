@@ -32,14 +32,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUserInfo();
-    this.getFavoriteMovies();
+    this.getFavouriteMovies();
   }
 
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
-      console.log(this.user);
       return this.user;
+      
     })
   }
 
@@ -63,18 +63,22 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
-
-  getFavoriteMovies(): void {
-    this.fetchApiData.getAllMovies().subscribe((resp: any) => {
-      this.movies = resp;
-      this.movies.forEach((movie: any) => {
-        if (this.user.FavoriteMovies.includes(movie._id)) {
-          this.favoriteMovies.push(movie);
-        }
+    getFavouriteMovies(): void {
+      this.fetchApiData.getAllMovies().subscribe((resp: any) => {
+        this.movies = resp;
+        console.log(this.user.FavoriteMovies);
+        this.movies.forEach((movie: any) => {
+          this.fetchApiData.getFavouriteMovies().subscribe((result: any) => {
+            if (result.includes(movie._id)) {
+              this.favoriteMovies.push(movie);
+            }
+          })
+          
+        });
       });
-    });
-    console.log(this.favoriteMovies);
-  }
+      console.log(this.favoriteMovies);
+    }
+    
 
   openDirectorDialog(name: string, bio: string, birthday: Date): void {
     this.MatDialog.open(DirectorComponent, {

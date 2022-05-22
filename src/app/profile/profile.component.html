@@ -11,6 +11,7 @@
       <p><b>Username:</b> {{user.Username}}</p>
       <p><b>Email:</b> {{user.Email}}</p>
       <p><b>Birthday:</b> {{user.Birthday | date }}</p>
+      <p><b>Birthday:</b> {{user.FavoriteMovies }}</p>
     </mat-card-content>
 
     <!-- Edit Profile Information & Delete Profile -->
@@ -32,7 +33,7 @@
     <h2 class="mat-card-favorite-movies">Favorite Movies:</h2>
 </div>
 <div style="display: flex;">
-    <mat-card *ngFor="let movie of favoriteMovies;" style="flex: 1 1 auto;">
+    <mat-card *ngFor="let movie of favoriteMovies;"  style="flex: 1 1 auto;">
         <mat-card-header>
         <mat-card-title>{{movie.Title}}</mat-card-title>
             <mat-card-subtitle>Directed by: {{movie.Director.Name}}</mat-card-subtitle>
