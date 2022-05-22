@@ -34,7 +34,11 @@ export class ProfileComponent implements OnInit {
     this.getUserInfo();
     this.getFavouriteMovies();
   }
-
+/**
+   * Gets user data
+   * @returns object holding user info
+   * @function getUser
+   */
   getUserInfo(): void {
     this.fetchApiData.getUser().subscribe((resp: any) => {
       this.user = resp;
@@ -42,14 +46,19 @@ export class ProfileComponent implements OnInit {
       
     })
   }
-
+/**
+   * opens the edit profile dialog to allow user to edit their details
+   */
   openEditProfileDialog(): void {
     this.MatDialog.open(EditProfileComponent, {
       width: '300px'
     })
   }
 
- 
+ /**
+   * delete the user profile
+   * @function deleteUser
+   */
   deleteProfile(): void {
     if (confirm('Are you sure you want to delete your account? This cannnot be undone.')) {
       this.router.navigate(['welcome']).then(() => {
@@ -63,6 +72,11 @@ export class ProfileComponent implements OnInit {
       });
     }
   }
+  /**
+   * Gets user's favorite movies data
+   * @function getAllMovies
+   * @function getFavouriteMovies
+   */
     getFavouriteMovies(): void {
       this.fetchApiData.getAllMovies().subscribe((resp: any) => {
         this.movies = resp;
@@ -76,10 +90,11 @@ export class ProfileComponent implements OnInit {
           
         });
       });
-      console.log(this.favoriteMovies);
     }
     
-
+/**
+   * opens the movie's director info dialog 
+   */
   openDirectorDialog(name: string, bio: string, birthday: Date): void {
     this.MatDialog.open(DirectorComponent, {
       data: {
@@ -91,7 +106,9 @@ export class ProfileComponent implements OnInit {
       width: '500px'
     });
   }
-
+/**
+   * opens the movie's genre info dialog 
+   */
   openGenreDialog(name: string, description: string): void {
     this.MatDialog.open(GenreComponent, {
       data: {
@@ -102,7 +119,9 @@ export class ProfileComponent implements OnInit {
       width: '500px'
     });
   }
-
+/**
+   * opens the movie details dialog 
+   */
   openMovieDetailsDialog(title: string, description: string): void {
     this.MatDialog.open(MovieDetailsComponent, {
       data: {
@@ -113,7 +132,10 @@ export class ProfileComponent implements OnInit {
       width: '500px'
     });
   }
-
+/**
+   * Remove movie from user's favourite list
+   * @function deleteFavouriteMovies
+   */
   removeFromFavoriteMovies(id: string, title: string): void {
     console.log(id);
     this.fetchApiData.deleteFavouriteMovies(id).subscribe((result) => {
